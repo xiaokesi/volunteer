@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="resources/system/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="resources/system/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- ionicons -->
+    <link href="resources/system/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="resources/system/css/morris.css" rel="stylesheet"/>
+
+    <!-- Datepicker -->
+    <link href="resources/system/css/datepicker.css" rel="stylesheet"/>
+
+    <!-- Animate -->
+    <link href="resources/system/css/animate.min.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link href="resources/system/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="resources/system/css/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Simplify -->
+    <link href="resources/system/css/simplify.min.css" rel="stylesheet">
+
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+
+    <#include "/resources/system/header.ftl"/>
+    <#include "/resources/system/aside.ftl"/>
+    <div class="main-container">
+        <div class="padding-md">
+            <div class="row" style="margin-top: 20px">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        首页
+                    </div>
+                    <div class="page-sub-header">
+                        欢迎回来!管理员
+                    </div>
+                </div>
+            </div>
+            <div class="row m-top-md" style="margin-top: 60px">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="statistic-box bg-danger m-bottom-md">
+                        <div class="statistic-title">
+                            用户总数
+                        </div>
+
+                        <div class="statistic-value">
+                            ${user_count}
+                        </div>
+
+                        <!--<div class="m-top-md">11% Higher than last week</div>-->
+
+                        <div class="statistic-icon-background">
+                            <i class="ion-eye"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="statistic-box bg-info m-bottom-md">
+                        <div class="statistic-title">
+                            活动总数
+                        </div>
+
+                        <div class="statistic-value">
+
+                        </div>
+
+                        <!--<div class="m-top-md">8% Higher than last week</div>-->
+
+                        <div class="statistic-icon-background">
+                            <i class="ion-ios7-cart-outline"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="statistic-box bg-purple m-bottom-md">
+                        <div class="statistic-title">
+                            组织机构总数
+                        </div>
+
+                        <div class="statistic-value">
+
+                        </div>
+
+                        <!--<div class="m-top-md">3% Higher than last week</div>-->
+
+                        <div class="statistic-icon-background">
+                            <i class="ion-person-add"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ./padding-md -->
+    </div><!-- /main-container -->
+
+    <footer class="footer">
+				<span class="footer-brand">
+					<!--<strong class="text-danger">Simplify</strong> Admin-->
+				</span>
+
+        <p class="no-margin">
+            &copy; 2016 <strong>信鸥科技</strong>. 版权所有.
+        </p>
+    </footer>
+</div><!-- /wrapper -->
+
+<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!-- Jquery -->
+<script src="resources/system/js/jquery-1.11.1.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="resources/system/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Flot -->
+<script src='resources/system/js/jquery.flot.min.js'></script>
+
+<!-- Slimscroll -->
+<script src='resources/system/js/jquery.slimscroll.min.js'></script>
+
+<!-- Morris -->
+<script src='resources/system/js/rapheal.min.js'></script>
+<script src='resources/system/js/morris.min.js'></script>
+
+<!-- Datepicker -->
+<script src='resources/system/js/uncompressed/datepicker.js'></script>
+
+<!-- Sparkline -->
+<script src='resources/system/js/sparkline.min.js'></script>
+
+<!-- Skycons -->
+<script src='resources/system/js/uncompressed/skycons.js'></script>
+
+<!-- Popup Overlay -->
+<script src='resources/system/js/jquery.popupoverlay.min.js'></script>
+
+<!-- Easy Pie Chart -->
+<script src='resources/system/js/jquery.easypiechart.min.js'></script>
+
+<!-- Sortable -->
+<script src='resources/system/js/uncompressed/jquery.sortable.js'></script>
+
+<!-- Owl Carousel -->
+<script src='resources/system/js/owl.carousel.min.js'></script>
+
+<!-- Modernizr -->
+<script src='resources/system/js/modernizr.min.js'></script>
+
+<!-- Simplify -->
+<script src="resources/system/js/simplify/simplify.js"></script>
+<script src="resources/system/js/simplify/simplify_dashboard.js"></script>
+
+<script>
+    $(function () {
+        $('.chart').easyPieChart({
+            easing: 'easeOutBounce',
+            size: '140',
+            lineWidth: '7',
+            barColor: '#7266ba',
+            onStep: function (from, to, percent) {
+                $(this.el).find('.percent').text(Math.round(percent));
+            }
+        });
+
+        $('.sortable-list').sortable();
+
+        $('.todo-checkbox').click(function () {
+
+            var _activeCheckbox = $(this).find('input[type="checkbox"]');
+
+            if (_activeCheckbox.is(':checked')) {
+                $(this).parent().addClass('selected');
+            }
+            else {
+                $(this).parent().removeClass('selected');
+            }
+
+        });
+
+        //Delete Widget Confirmation
+        $('#deleteWidgetConfirm').popup({
+            vertical: 'top',
+            pagecontainer: '.container',
+            transition: 'all 0.3s'
+        });
+    });
+
+</script>
+
+</body>
+</html>

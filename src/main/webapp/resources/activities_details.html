@@ -1,0 +1,136 @@
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+    <title>详情</title>
+
+
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            var id = GetRequest();
+            get(id);
+        });
+
+        /**
+         * 获取url中"?"符后的字串
+         * @returns {Object}
+         * @constructor
+         */
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            console.log(theRequest.id);
+            return theRequest.id;
+        }
+
+
+        function get(id) {
+            $.ajax({
+//                url: "http://123.57.214.189/volunteer/activities/findActivitiesById",
+//                url: "http://localhost:8080/volunteer/activities/findActivitiesById",
+               url: "http://123.206.43.110/volunteer/activities/findActivitiesById",
+                method: "get",
+                data: {id: id},//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
+                dataType: "json",
+                contentType: "charset=utf-8",
+                success: function (data) {
+                    $("#result").val(data);
+                    console.log(data);
+
+                    var title = data.title;
+                    var time = data.time;
+                    var context = data.context;
+                    var organizer = data.organizer;
+                    var type = data.type;
+                    var activitiestime = data.activitiestime;
+                    var require = data.require;
+                    var size = data.size;
+                    //var cover = data.cover;//封面图片路径
+                    document.getElementById("title").innerHTML = title;
+                    document.getElementById("time").innerHTML = timeInit(time);
+                    document.getElementById("context").innerHTML = context;
+                    document.getElementById("organizer").innerHTML = organizer;
+                    document.getElementById("type").innerHTML = type;
+                    document.getElementById("activitiestime").innerHTML = activitiestime;
+                    document.getElementById("require").innerHTML = require;
+                    document.getElementById("size").innerHTML = size;
+                    //document.getElementById("cover").src = cover;
+                }
+            })
+        }
+
+        //格式化time的格式
+        function timeInit(time) {
+            return (time.slice(0, 19)).replace(/T/, " ");
+        }
+
+        function enrollOnClick() {
+            window.location.href = "/volunteer/resources/enroll_ok.html";
+        }
+    </script>
+
+</head>
+<body>
+<div >
+    <img id="cover" style="width: 100%;height:auto;background-color: #fafafa;">
+</div>
+<div id="list">
+    <div style="border-bottom: 1px solid #f3f3f3;">
+        <h4 id="title" style="line-height: 0px;margin-top:30px;font-size: 18px;font-weight: bold;">title</h4>
+
+        <div style="margin: -5px 0 10px 0;">
+            <span id="type"
+                  style="font-size: 12px;background-color: #CC0000;color: white;padding: 4px 10px 4px 10px;display: inline-block">社区医疗
+            </span>
+            <span id="organizer"
+                  style="font-size: 13px;color: #9b9b9b; margin:10px 0 0 8px;">中国基金会 组织
+            </span>
+        </div>
+    </div>
+    <ul style="border: 1px dashed #ccc; padding:16px 12px 16px 30px;margin: 14px 0 10px 0px;">
+        <li style="font-size: 13px;color: #666; margin:0px 10px 0 0;">
+            <b>活动时间:</b>
+                <span id="activitiestime"
+                      style="font-size: 13px;color: #9b9b9b; margin:10px 0 0 0;">
+                </span>
+        </li>
+        <li style="font-size: 13px;color:#666; margin:10px 10px 0 0;">
+            <b>报名截止日期:</b>
+                <span id="time"
+                      style="font-size: 13px;color: #9b9b9b; margin:10px 0 0 0;">
+                 </span>
+        </li>
+        <li style="font-size: 13px;color: #666; margin:10px 10px 0 0;">
+            <b>愿者要求:</b>
+                <span id="require"
+                      style="font-size: 13px;color: #9b9b9b; margin:10px 0 0 0;">
+                </span>
+        </li>
+        <li style="font-size: 13px;color: #666; margin:10px 10px 0 0;">
+            <b>计划招募人数:</b>
+                <span id="size"
+                      style="font-size: 13px;color: #9b9b9b; margin:10px 0 0 0;">
+                </span>
+        </li>
+    </ul>
+</div>
+<p id="context"
+   style="font-size: 14px;line-height: 22px;text-indent:2em; margin-top: 12px;color: #666;padding: 0 8px 0 8px;">
+</p>
+</div>
+<div style="width: 90%;height: 30px;border-top:1px solid #fafafa;text-align: center;background-color:#E2374C;border-radius:6px;color: #fff; padding: 10px 0 0 0;margin: 40px 5% 100px 5%;"
+     onclick="enrollOnClick()">立即报名
+</div>
+</body>
+</html>

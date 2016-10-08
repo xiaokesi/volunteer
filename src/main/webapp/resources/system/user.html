@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="resources/system/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="resources/system/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- ionicons -->
+    <link href="resources/system/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="resources/system/css/morris.css" rel="stylesheet"/>
+
+    <!-- Datepicker -->
+    <link href="resources/system/css/datepicker.css" rel="stylesheet"/>
+
+    <!-- Animate -->
+    <link href="resources/system/css/animate.min.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link href="resources/system/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="resources/system/css/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Simplify -->
+    <link href="resources/system/css/simplify.min.css" rel="stylesheet">
+
+
+    <!--为列表添加序号-->
+    <script language="javascript" type="text/javascript">
+        window.onload = function(){
+            var oTable = document.getElementById("tBodyForId");
+            for(var i=0;i<oTable.rows.length;i++){
+                oTable.rows[i].cells[0].innerHTML = (i+1);
+                if(i%2==0)    //偶数行
+                    oTable.rows[i].className = "ys01";
+            }
+        }
+    </script>
+
+
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <#include "/resources/system/header.ftl"/>
+    <#include "/resources/system/aside.ftl"/>
+
+            <div class="main-container">
+                <div class="padding-md">
+                    <ul class="breadcrumb">
+                        <li style="line-height:30px;width:100%">用户管理
+
+                        </li>
+                    </ul>
+                    <form class="no-margin" id="formValidate1" data-validate="parsley" novalidate
+                          action="adminUserByName" method="POST">
+                        <div class="form-group">
+
+                            <div style="float: left;margin: 7px">用户名:</div>
+                            <input name="loginname" type="text" class="form-control input-sm" placeholder="用户名"
+                                   style="width: 80px;float: left"
+                                   data-parsley-required="true">
+
+                        </div><!-- /form-group -->
+                        <div class="text-right m-top-md">
+                            <button type="submit" class="btn btn-info" style="margin-left: -40px">查 询</button>
+                        </div>
+                    </form>
+                    <table class="table table-striped" id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>用户名</th>
+                            <th>真实姓名</th>
+                            <th>email</th>
+                            <th>身份证号</th>
+                            <th>所属区域</th>
+                            <th>手机号</th>
+                            <th>志愿北京编号</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tBodyForId">
+                        <#list activitys as activity>
+                            <tr>
+                                <td style="vertical-align: middle">${activity.id}</td>
+                                <td style="vertical-align: middle">${activity.loginname}</td>
+                                <td style="vertical-align: middle">${activity.realname}</td>
+                                <td style="vertical-align: middle">${activity.email}</td>
+                                <td style="vertical-align: middle">${activity.idcard}</td>
+                                <td style="vertical-align: middle">${activity.area}</td>
+                                <td style="vertical-align: middle">${activity.mobile}</td>
+                                <#if (activity.zybj_id) ??>
+                                    <td style="vertical-align: middle">${activity.zybj_id}</td>
+                                    <#else>
+                                        <td style="vertical-align: middle"></td>
+                                </#if>
+
+                                <td style="vertical-align: middle">
+                                    <a  href="adminUpdateUser?user_id=${activity.id}" class="btn btn-xs btn-info">修改</a>
+                                    <a  href="adminDeleteUserAction?user_id=${activity.id}" class="btn btn-xs btn-danger ">删除</a>
+                                </td>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                </div><!-- ./padding-md -->
+            </div><!-- /main-container -->
+
+            <footer class="footer">
+				<span class="footer-brand">
+					<!--<strong class="text-danger">Simplify</strong> Admin-->
+				</span>
+
+                <p class="no-margin">
+                    &copy; 2016 <strong>信鸥科技</strong>. 版权所有.
+                </p>
+            </footer>
+</div><!-- /wrapper -->
+<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!-- Jquery -->
+<script src="resources/system/js/jquery-1.11.1.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="resources/system/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Flot -->
+<script src='resources/system/js/jquery.flot.min.js'></script>
+
+<!-- Slimscroll -->
+<script src='resources/system/js/jquery.slimscroll.min.js'></script>
+
+<!-- Morris -->
+<script src='resources/system/js/rapheal.min.js'></script>
+<script src='resources/system/js/morris.min.js'></script>
+
+<!-- Datepicker -->
+<script src='resources/system/js/uncompressed/datepicker.js'></script>
+
+<!-- Sparkline -->
+<script src='resources/system/js/sparkline.min.js'></script>
+
+<!-- Skycons -->
+<script src='resources/system/js/uncompressed/skycons.js'></script>
+
+<!-- Popup Overlay -->
+<script src='resources/system/js/jquery.popupoverlay.min.js'></script>
+
+<!-- Easy Pie Chart -->
+<script src='resources/system/js/jquery.easypiechart.min.js'></script>
+
+<!-- Sortable -->
+<script src='resources/system/js/uncompressed/jquery.sortable.js'></script>
+
+<!-- Owl Carousel -->
+<script src='resources/system/js/owl.carousel.min.js'></script>
+
+<!-- Modernizr -->
+<script src='resources/system/js/modernizr.min.js'></script>
+
+<!-- Simplify -->
+<script src="resources/system/js/simplify/simplify.js"></script>
+<script src="resources/system/js/simplify/simplify_dashboard.js"></script>
+
+<script>
+    $(function () {
+        $('.chart').easyPieChart({
+            easing: 'easeOutBounce',
+            size: '140',
+            lineWidth: '7',
+            barColor: '#7266ba',
+            onStep: function (from, to, percent) {
+                $(this.el).find('.percent').text(Math.round(percent));
+            }
+        });
+
+        $('.sortable-list').sortable();
+
+        $('.todo-checkbox').click(function () {
+
+            var _activeCheckbox = $(this).find('input[type="checkbox"]');
+
+            if (_activeCheckbox.is(':checked')) {
+                $(this).parent().addClass('selected');
+            }
+            else {
+                $(this).parent().removeClass('selected');
+            }
+
+        });
+
+        //Delete Widget Confirmation
+        $('#deleteWidgetConfirm').popup({
+            vertical: 'top',
+            pagecontainer: '.container',
+            transition: 'all 0.3s'
+        });
+    });
+
+</script>
+
+</body>
+</html>

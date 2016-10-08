@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="resources/system/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="resources/system/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- ionicons -->
+    <link href="resources/system/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Simplify -->
+    <link href="resources/system/css/simplify.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript">
+
+        function myOnClick() {
+            if (check()) {
+                $("#formValidate1").submit();
+            } else {
+
+            }
+        }
+
+        function check() {
+//            if ($("#file").val() == "" || $("#file").val() == undefined) {
+//                alert("请添加团队logo!");
+//                return false;
+//            }
+            return true;
+        }
+    </script>
+
+
+
+
+</head>
+
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <#include "/resources/system/header.ftl"/>
+    <#include "/resources/system/aside.ftl"/>
+
+            <div class="main-container">
+                <div class="padding-md">
+                    <ul class="breadcrumb">
+                        <li>修改用户</li>
+                    </ul>
+                    <div class="row" style="margin:0 auto">
+                        <div class="col-md-6">
+                            <div class="smart-widget">
+                                <div class="smart-widget-header">
+                                    修改用户
+									<span class="smart-widget-option">
+										<span class="refresh-icon-animated">
+											<i class="fa fa-circle-o-notch fa-spin"></i>
+										</span>
+			                            <a href="#" class="widget-toggle-hidden-option">
+                                            <i class="fa fa-cog"></i>
+                                        </a>
+			                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+			                            <a href="#" class="widget-refresh-option">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+			                            <a href="#" class="widget-remove-option">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+			                        </span>
+                                </div>
+                                <div class="smart-widget-inner">
+                                    <div class="smart-widget-hidden-section">
+                                        <ul class="widget-color-list clearfix">
+                                            <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                                            <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                                            <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                                            <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                                            <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                                            <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                                            <li style="background-color:#e36159;" data-color="widget-red"></li>
+                                            <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                                            <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                                            <li style="background-color:#fff;" data-color="reset"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="smart-widget-body">
+                                        <form class="no-margin" id="formValidate1" data-validate="parsley" novalidate
+                                              action="adminUpdateUserAction" method="POST">
+                                            <div class="form-group">
+                                                <input name="id" type="hidden" value="${update_user.id}"/>
+                                                <label class="control-label">用户名</label>
+                                                <input name="loginname" type="text" placeholder="用户名" value="${update_user.loginname}"
+                                                       class="form-control input-sm"
+                                                       data-parsley-required="true" data-parsley-minlength="8">
+                                            </div><!-- /form-group -->
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">真实姓名</label>
+                                                        <input type="text" placeholder="真实姓名"
+                                                               class="form-control input-sm"
+                                                               id="realname" name="realname"
+                                                               value="${update_user.realname}"
+                                                               data-parsley-required="true"
+                                                               data-parsley-minlength="8">
+                                                    </div><!-- /form-group -->
+                                                </div><!-- /.col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">email</label>
+                                                        <input type="text" placeholder="email"
+                                                               class="form-control input-sm"
+                                                               id="email" name="email"
+                                                               value="${update_user.email}"
+                                                               data-parsley-required="true"
+                                                               data-parsley-minlength="8">
+                                                    </div><!-- /form-group -->
+                                                </div><!-- /.col -->
+                                            </div><!-- /.row -->
+
+                                            <div class="form-group">
+                                                <label class="control-label">身份证号</label>
+                                                <input name="idcard" type="text" class="form-control input-sm"
+                                                       value="${update_user.idcard}"
+                                                       placeholder="身份证号"
+                                                       data-parsley-required="true">
+                                            </div><!-- /form-group -->
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">所属区域</label>
+                                                        <input type="text" placeholder="所属区域"
+                                                               class="form-control input-sm"
+                                                               id="area" name="area"
+                                                               value="${update_user.area}"
+                                                               data-parsley-required="true"
+                                                               data-parsley-minlength="8">
+                                                    </div><!-- /form-group -->
+                                                </div><!-- /.col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">联系方式</label>
+                                                        <input type="text" placeholder="联系方式"
+                                                               class="form-control input-sm"
+                                                               id="mobile" name="mobile"
+                                                               value="${update_user.mobile}"
+                                                               data-parsley-required="true"
+                                                               data-parsley-minlength="8">
+                                                    </div>
+                                                </div><!-- /.col -->
+                                            </div><!-- /.row -->
+
+                                            <div class="text-right m-top-md">
+                                                <button type="button" class="btn btn-info" onclick="myOnClick()">确 定</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- ./smart-widget-inner -->
+                            </div><!-- ./smart-widget -->
+                        </div><!-- /.col-->
+                    </div><!-- /.row -->
+                </div><!-- /.padding-md -->
+            </div><!-- /main-container -->
+
+            <footer class="footer">
+				<span class="footer-brand">
+					<!--<strong class="text-danger">Simplify</strong> Admin-->
+				</span>
+
+                <p class="no-margin">
+                    &copy; 2016 <strong>信鸥科技</strong>. 版权所有.
+                </p>
+            </footer>
+</div><!-- /wrapper -->
+
+<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!-- Jquery -->
+<script src="resources/system/js/jquery-1.11.1.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="resources/system/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Popup Overlay -->
+<script src='resources/system/js/jquery.popupoverlay.min.js'></script>
+
+<!-- Parsley -->
+<script src="resources/system/js/parsley.min.js"></script>
+
+<!-- Slimscroll -->
+<script src='resources/system/js/jquery.slimscroll.min.js'></script>
+
+<!-- Modernizr -->
+<script src='resources/system/js/modernizr.min.js'></script>
+
+<!-- Simplify -->
+<script src="resources/system/js/simplify/simplify.js"></script>
+
+<script>
+    $(function () {
+        //Delete Widget Confirmation
+        $('#deleteWidgetConfirm').popup({
+            vertical: 'top',
+            pagecontainer: '.container',
+            transition: 'all 0.3s'
+        });
+
+        //Form Validation
+        $('#basic-constraint').parsley({
+            listeners: {
+                onFormSubmit: function (isFormValid, event) {
+                    if (isFormValid) {
+                        return false;
+                    }
+                }
+            }
+        });
+
+        $('#type-constraint').parsley({
+            listeners: {
+                onFormSubmit: function (isFormValid, event) {
+                    if (isFormValid) {
+                        return false;
+                    }
+                }
+            }
+        });
+
+        $('#formValidate1').parsley({
+            listeners: {
+                onFormSubmit: function (isFormValid, event) {
+                    if (isFormValid) {
+                        alert('Registration Complete');
+                        return false;
+                    }
+                }
+            }
+        });
+
+        $('#formValidate2').parsley({
+            listeners: {
+                onFieldValidate: function (elem) {
+                    // if field is not visible, do not apply Parsley validation!
+                    if (!$(elem).is(':visible')) {
+                        return true;
+                    }
+
+                    return false;
+                },
+                onFormSubmit: function (isFormValid, event) {
+                    if (isFormValid) {
+                        alert('Your message has been sent');
+                        return false;
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

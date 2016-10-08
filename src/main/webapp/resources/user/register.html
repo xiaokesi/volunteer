@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>用户注册</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"
+          xmlns="http://www.w3.org/1999/html"/>
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+     <link rel="stylesheet" href="/volunteer/resources/user/css/login.css" type="text/css" />
+
+    <script>
+        function submit() {
+            $("#uploadicon").ajaxSubmit({
+
+                type: "POST",//提交类型
+                dataType: "json",//返回结果格式
+                url: 'uploadicon',//请求地址
+                //data: { "action": "TemporaryImage" },//请求数据
+                success: function (data) {//请求成功后的函数
+
+                    console.log(data);
+                    $('#head').value=data.name;
+                    $('#form_launch').submit();
+
+                },
+                error: function (data) { alert(data.msg); },//请求失败的函数
+                async: true
+
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <form id="uploadicon" action="uploadicon" method="post" enctype="multipart/form-data">
+        <p style="font-size: 15px;height: 16px;margin-top: 16px;"><span
+                style="width: 100px;display: inline-block;display: inline-block;"><span class="red-star">*</span>头像</span>
+            <input style='border:0;border-bottom:1px;width: 60%;' type="file" name="head"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+    </form>
+    <form id="form_launch" action="register" method="post"  class="list-normal">
+
+        <input id="head" name="head" style="display: none; height: 0px;">
+        <p style="font-size: 15px;height: 16px;margin-top: 16px;"><span
+                style="width: 100px;display: inline-block;display: inline-block;"><span class="red-star">*</span>用户名</span>
+            <input style='border:0;border-bottom:1px;width: 60%;' type="text" name="loginname"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;margin-top: 16px;"><span
+                style="width: 110px;display: inline-block;display: inline-block;"><span class="red-star">*</span>志愿北京账号</span>
+            <input style='border:0;border-bottom:1px;width: 55%;' type="text" name="zybj"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>密码 </span> <input
+                placeholder="6-18位以字母开头的字母或数字"
+                style='border:0;border-bottom:1px;width: 60%;'
+                type="password"
+                name="password"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>确认密码 </span> <input
+                 style='border:0;border-bottom:1px;width: 60%;'
+                type="password"
+                name="repassword"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>电子邮箱</span> <input
+                 style='border:0;border-bottom:1px;width: 60%;'
+                type="text"
+                name="email"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>真实姓名</span> <input
+                 style='border:0;border-bottom:1px;width: 60%;'
+                type="text"
+                name="realname"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>身份证号 </span> <input
+                 style='border:0;border-bottom:1px;width: 60%;'
+                type="text"
+                name="idcard"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>所在区域 </span>
+            <select name="area"  style='border:0;border-bottom:1px;width: 60%;' class="xla_k">
+                <!--贵园北里社区，贵园南里社区，贵园北里二区，贵园南里二区，广德苑社区，
+                贵园东里社区，富源里社区，星岛社区，泰河园社区，泰河园一里社区，泰河园七里社区，
+                鹿海园一里社区，鹿海园三里社区，晓康社区，晓康东里社区，三羊里社区，开泰东里社区,东工业区，南工业区,-->
+                <option value="贵园北里社区">贵园北里社区</option>
+                <option value="贵园南里社区">贵园南里社区</option>
+                <option value="贵园北里二区">贵园北里二区</option>
+                <option value="贵园南里二区">贵园南里二区</option>
+                <option value="广德苑社区">广德苑社区</option>
+                <option value="贵园东里社区">贵园东里社区</option>
+                <option value="富源里社区">富源里社区</option>
+                <option value="星岛社区">星岛社区</option>
+                <option value="泰河园社区">泰河园社区</option>
+                <option value="泰河园一里社区">泰河园一里社区</option>
+                <option value="泰河园七里社区">泰河园七里社区</option>
+                <option value="鹿海园一里社区">鹿海园一里社区</option>
+                <option value="鹿海园三里社区">鹿海园三里社区</option>
+                <option value="晓康社区">晓康社区</option>
+                <option value="晓康东里社区">晓康东里社区</option>
+                <option value="三羊里社区">三羊里社区</option>
+                <option value="开泰东里社区">开泰东里社区</option>
+                <option value="东工业区">东工业区</option>
+                <option value="南工业区">南工业区</option>
+            </select>
+        </p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;"><span class="red-star">*</span>手机号 </span> <input
+                style='border:0;border-bottom:1px;width: 60%;'
+                type="text" name="mobile"/></p>
+        <hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">
+        <!--<p style="font-size: 15px;height: 16px;"><span style="width: 100px;display: inline-block;">验证码: </span> <input-->
+                <!--style='border:0;border-bottom:1px;width: 60%;'-->
+                <!--type="text" name="checkcode"/></p>-->
+        <!--<hr width=100% size=1 color=#f3f3f3 style="FILTER: alpha(opacity=100,finishopacity=0)">-->
+        <!--<div>${error!}</div>-->
+        <div onclick="submit()">
+            <button type="button" value="提   交" class="btn-submit2"/>申请成为志愿者</button>
+        </div>
+        <div>
+            <h4 style="color: red">${error}</h4>
+        </div>
+
+
+
+    </form>
+
+</div>
+</body>
+</html>
